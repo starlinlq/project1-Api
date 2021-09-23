@@ -14,7 +14,6 @@
 | and then import them inside `start/routes.ts` as follows
 |
 | import './routes/cart'
-| import './routes/customer'
 |
 */
 
