@@ -14,17 +14,15 @@ export default class Post extends BaseModel {
   @column()
   public description: string
   @column()
-  public userName: string
+  public user_name: string
   @column()
   public photo_url: string
   @column()
   public userId: number
   @column()
-  public categoryId: number
+  public category_id: number
   @column()
-  public categoryTitle: string
-  @belongsTo(() => Category)
-  public category: BelongsTo<typeof Category>
+  public category_title: string
   @hasMany(() => Like)
   public likes: HasMany<typeof Like>
 

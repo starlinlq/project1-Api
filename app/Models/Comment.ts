@@ -12,7 +12,7 @@ export default class Comment extends BaseModel {
   @column()
   public userId: number
   @column()
-  public userName: string
+  public user_name: string
   @column()
   public postId: number
 

@@ -13,7 +13,7 @@ export default class Posts extends BaseSchema {
       table.string('description', 500).notNullable()
       table.string('photo_url', 1000).notNullable()
       table.integer('user_id', 150).references('id').inTable('users').onDelete('CASCADE')
-      table.string('category_title').notNullable()
+      table.string('category_title')
       table.integer('category_id')
     })
   }

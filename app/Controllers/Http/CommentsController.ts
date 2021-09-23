@@ -19,7 +19,7 @@ export default class CommentsController {
       if (post && user) {
         let new_comment = new Comment()
         new_comment.comment = request.input('comment')
-        new_comment.userName = user.user_name
+        new_comment.user_name = user.user_name
         await user.related('comments').save(new_comment)
         await post.related('comments').save(new_comment)
         return response.status(200).send(new_comment)

@@ -28,6 +28,8 @@ Route.group(() => {
   Route.get('logout', 'AuthController.logOut').middleware('auth:api')
 }).prefix('api')
 
+Route.get('', ({ request, response }) => response.send('running'))
+
 Route.group(() => {
   Route.get('show/:id', 'PostsController.show')
   Route.get('stories/page/:id', 'PostsController.index')

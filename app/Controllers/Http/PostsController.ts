@@ -2,7 +2,6 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from '../../Models/Post'
 import { upload } from 'App/services/Cloudinary'
 import Profile from 'App/Models/Profile'
-import Category from 'App/Models/Category'
 import Like from 'App/Models/Like'
 
 export default class PostsController {
@@ -107,33 +106,15 @@ export default class PostsController {
   public async store({ request, auth, response }: HttpContextContract) {
     try {
       const user = await auth.authenticate()
-      let created = await Category.first()
-      console.log(request.input('title'))
-
-      if (!created) {
-        console.log('categories created')
-        await Category.createMany([
-          { title: 'Adventure', slug: '' },
-          { title: 'Nature', slug: '' },
-          { title: 'Comedy', slug: '' },
-          { title: 'Jorney', slug: '' },
-          { title: 'Rebirth', slug: '' },
-          { title: 'Universe', slug: '' },
-          { title: 'Family', slug: '' },
-        ])
-      }
 
       if (user) {
         const post = new Post()
         post.title = request.input('title')
         post.photo_url = request.input('photo_url')
         post.story = request.input('story')
-        post.categoryTitle = request.input('category')
-        let category = await Category.findBy('title', request.input('category'))
-        post.userName = user.user_name
-        if (category) {
-          await category.related('posts').save(post)
-        }
+        post.category_title = request.input('category')
+        post.user_name = user.user_name
+
         await user.related('posts').save(post)
         return post.toJSON()
       }
