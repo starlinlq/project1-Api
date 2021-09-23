@@ -19,7 +19,7 @@ export default class Post extends BaseModel {
   @column()
   public photo_url: string
   @column()
-  public userId: number
+  public user_id: number
   @column()
   public category_id: number
   @column()

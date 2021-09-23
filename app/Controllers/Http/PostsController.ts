@@ -90,7 +90,7 @@ export default class PostsController {
       const post = await Post.query().where('id', params.id).preload('likes').preload('comments')
 
       if (post) {
-        let profile = await Profile.find(post[0].userId)
+        let profile = await Profile.find(post[0].user_id)
 
         if (profile) {
           return { post, url: profile.profile_pic_url }

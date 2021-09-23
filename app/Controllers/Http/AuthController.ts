@@ -57,7 +57,13 @@ export default class AuthController {
     const token = await auth.use('api').login(new_user, {
       expiresIn: '10 days',
     })
-    return { name: new_user.user_name, id: new_user.id, profile: new_user.profile, token }
+    return {
+      name: new_user.user_name,
+      id: new_user.id,
+      profile: new_user.profile,
+      token,
+      photo_url,
+    }
   }
 
   public async upload({ request, response }: HttpContextContract) {

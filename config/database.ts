@@ -24,7 +24,7 @@ const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
   |
   */
 
-  connection: Application.inDev ? 'sqlite' : 'mysql',
+  connection: 'mysql',
 
   connections: {
     /*
