@@ -2,9 +2,6 @@
   "name": "server",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": "12.18.3"
-  },
   "scripts": {
     "build": "node ace build --prod",
     "start": "node ace serve --watch",
