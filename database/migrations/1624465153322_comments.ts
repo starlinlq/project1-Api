@@ -8,8 +8,8 @@ export default class Comments extends BaseSchema {
       table.increments('id')
       table.text('comment').notNullable()
       table.string('user_name')
-      table.integer('user_id').references('id').inTable('users')
-      table.integer('post_id').references('id').inTable('posts').onDelete('CASCADE')
+      table.integer('user_id')
+      table.integer('post_id')
       table.timestamps(true)
     })
   }
