@@ -8,13 +8,13 @@ export default class Posts extends BaseSchema {
       table.increments('id')
       table.timestamps(true)
       table.string('title', 255).notNullable()
-      table.string('user_name', 250).references('user_name').inTable('users')
+      table.string('user_name', 250)
       table.text('story').notNullable()
       table.string('description', 500).notNullable()
       table.string('photo_url', 1000).notNullable()
       table.integer('user_id', 150).references('id').inTable('users').onDelete('CASCADE')
       table.string('category_title').notNullable()
-      table.integer('category_id').notNullable().references('id').inTable('categories')
+      table.integer('category_id')
     })
   }
 
