@@ -21,14 +21,13 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
+  Route.get('', ({ request, response }) => response.send('running'))
   Route.post('register', 'AuthController.register')
   Route.post('upload', 'AuthController.upload')
   Route.post('login', 'AuthController.login')
   Route.get('validate', 'AuthController.validate').middleware('auth:api')
   Route.get('logout', 'AuthController.logOut').middleware('auth:api')
 }).prefix('api')
-
-Route.get('', ({ request, response }) => response.send('running'))
 
 Route.group(() => {
   Route.get('show/:id', 'PostsController.show')
