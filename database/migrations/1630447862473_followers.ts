@@ -6,8 +6,8 @@ export default class Followers extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id').unsigned().references('users.id')
-      table.integer('follower_id').unsigned()
+      table.integer('user_id').notNullable()
+      table.integer('follower_id').notNullable()
       table.unique(['user_id', 'follower_id'])
       table.timestamps(true)
     })

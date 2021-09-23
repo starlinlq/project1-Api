@@ -6,8 +6,8 @@ export default class Likes extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id').references('id').inTable('users').onDelete('CASCADE')
-      table.integer('post_id').references('id').inTable('posts').onDelete('CASCADE')
+      table.integer('user_id').notNullable()
+      table.integer('post_id').notNullable()
       table.timestamps(true)
     })
   }
