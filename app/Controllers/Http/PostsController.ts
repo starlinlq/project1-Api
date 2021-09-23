@@ -131,7 +131,7 @@ export default class PostsController {
     try {
       let post = await Post.find(params.id)
       let user = await auth.authenticate()
-      if (user.id === post!.userId && post) {
+      if (user.id === post!.user_id && post) {
         post.title = request.input('title')
         post.story = request.input('story')
         post.photo_url = request.input('photo_url')
