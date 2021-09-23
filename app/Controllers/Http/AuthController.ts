@@ -8,6 +8,7 @@ export default class AuthController {
   public async validate({ response, auth }: HttpContextContract) {
     try {
       let user = await auth.authenticate()
+
       if (user) {
         let userdata = await User.query()
           .where('id', user.id)
@@ -18,6 +19,7 @@ export default class AuthController {
           .preload('following', (query) => {
             query.select(['id'])
           })
+
         const bookmark = await Like.query()
           .where('user_id', user.id)
           .preload('post', (postQuery) => {
@@ -90,7 +92,6 @@ export default class AuthController {
   }
 
   public async logOut({ response, auth }: HttpContextContract) {
-    console.log('hello')
     try {
       let user = await auth.authenticate()
       if (user) {

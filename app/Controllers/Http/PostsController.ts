@@ -45,7 +45,6 @@ export default class PostsController {
         }
       }
     } catch (error) {
-      console.log(error)
       response.status(400).send(error)
     }
   }
@@ -90,7 +89,7 @@ export default class PostsController {
       const post = await Post.query().where('id', params.id).preload('likes').preload('comments')
 
       if (post) {
-        let profile = await Profile.find(post[0].user_id)
+        let profile = await Profile.find(post[0].userId)
 
         if (profile) {
           return { post, url: profile.profile_pic_url }
@@ -121,17 +120,15 @@ export default class PostsController {
 
       return response.unauthorized()
     } catch (error) {
-      console.log(error)
       return response.status(400).send('something went wrong')
     }
   }
 
   public async update({ params, auth, request, response }: HttpContextContract) {
-    console.log(params.id)
     try {
       let post = await Post.find(params.id)
       let user = await auth.authenticate()
-      if (user.id === post!.user_id && post) {
+      if (user.id === post!.userId && post) {
         post.title = request.input('title')
         post.story = request.input('story')
         post.photo_url = request.input('photo_url')
@@ -148,7 +145,7 @@ export default class PostsController {
 
   public async search({ params, response }: HttpContextContract) {
     let query = params.id
-    console.log(query)
+
     try {
       let data = await Post.query()
         .where('title', 'like', '%' + query + '%')
@@ -156,7 +153,6 @@ export default class PostsController {
         .paginate(1, 10)
       return response.status(200).send(data)
     } catch (error) {
-      console.log(error)
       return response.status(400).send(error)
     }
   }
