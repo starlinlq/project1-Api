@@ -38,6 +38,17 @@ const databaseConfig: DatabaseConfig & { orm: Partial<OrmConfig> } = {
     | npm i sqlite3
     |
     */
+
+    sqlite: {
+      client: 'sqlite',
+      connection: {
+        filename: Application.tmpPath('db.sqlite3'),
+      },
+      migrations: {},
+      useNullAsDefault: true,
+      healthCheck: false,
+      debug: false,
+    },
     mysql: {
       client: 'mysql',
       connection: {
